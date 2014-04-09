@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html;charset=utf-8">
+		<script type="text/javascript" src="js/sea.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/style.css"/>
+	</head>
+	<body>
+		<p id="sortp"></p>
+		<div id="menu" class="menu">
+			<div>Choose sort algorithm:</div>
+			<div class="button" onclick="choose(1)">Bubble sort</div>
+			<div class="button" onclick="choose(2)">Selection sort</div>
+			<div class="button" onclick="choose(3)">Quickly sort</div>
+		</div>
+		<div id="tab1" class="content"></div>
+		<script type="text/javascript">
+			if(window.attachEvent)
+			{
+				alert("This demo don`t support ie.");
+				document.getElementById('menu').style.display = "none";
+			}
+
+			function choose (index) {
+				var url;
+				switch(index){
+					case 1:
+						url = "js/sortBubble.js";
+						sortp.innerHTML = "Bubble sort";
+						break;
+					case 2:
+						url = "js/sortChoose.js";
+						sortp.innerHTML = "Selection sort";
+						break;
+					case 3:
+						url = "js/sortQuick.js";
+						sortp.innerHTML = "Quickly sort";
+						break;
+				}
+				
+				document.getElementById('menu').style.display = "none";
+				document.getElementById('tab1').style.display = "block";
+
+				seajs.config({
+					base : "./",
+					alias : {
+						"jquery" : "jquery/jquery/1.10.1/jquery.js",
+						"sortChoose" : url
+					}
+				});
+				seajs.use('js/main');
+
+				console.log("Please input sortAuto() to start sort.");
+			}
+
+		</script>
+	</body>
+</html>
